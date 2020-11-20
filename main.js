@@ -1,15 +1,16 @@
 // Typing text generated
 var typingMsg = [
-    "Nobody spoke for a minute; then Meg said in an altered tone, You know the reason Mother proposed not having any presents this Christmas was because it is going to be a hard winter for everyone;",
-    "Mr. Bennet was so odd a mixture of quick parts, sarcastic humour, reserve, and caprice",
-    "William Shakespeare was the son of John Shakespeare, an alderman and a successful glover (glove-maker) originally from Snitterfield, and Mary Arden",
-    "PHP is a general-purpose scripting language especially suited to web development.",
-    "HTML can embed programs written in a scripting language such as JavaScript, which affects the behavior and content of web pages. ",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-    "Facilisi morbi tempus iaculis urna id volutpat lacus laoreet. ",
-    "She did not hear the story as many women have heard the same, with a paralyzed inability to accept its significance. ",
-    "Suddenly she came upon a little three-legged table, all made of solid glass;"
+    // "Nobody spoke for a minute; then Meg said in an altered tone, You know the reason Mother proposed not having any presents this Christmas was because it is going to be a hard winter for everyone;",
+    // "Mr. Bennet was so odd a mixture of quick parts, sarcastic humour, reserve, and caprice.",
+    // "William Shakespeare was the son of John Shakespeare, an alderman and a successful glover (glove-maker) originally from Snitterfield, and Mary Arden.",
+    // "PHP is a general-purpose scripting language especially suited to web development.",
+    // "HTML can embed programs written in a scripting language such as JavaScript, which affects the behavior and content of web pages.",
+    // "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    // "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    // "Facilisi morbi tempus iaculis urna id volutpat lacus laoreet.",
+    "She did not hear the story as many women have heard the same, with a paralyzed inability to accept its significance.",
+    "Suddenly she came upon a little three-legged table, all made of solid glass;",
+    "This is a test screen."
 ];
 
 // Random number generated for the text generator
@@ -33,6 +34,9 @@ var error = 0;
 // Displays time
 var time = document.getElementById('typing-time');
 
+var inter;
+var typeval;
+
 // Defines Seconds
 if (second <= 9) {
 time.innerHTML = minute + ':' + '0' + second;
@@ -40,7 +44,7 @@ time.innerHTML = minute + ':' + '0' + second;
 
 // Defines Text Display
 var display = document.getElementById('typing-display');
-document.getElementById('typing-display').innerText = typingMsg[typechoice] + typingMsg[typechoice].length;
+document.getElementById('typing-display').innerText = typingMsg[typechoice];
 
 // Receivers user input from text value
 document.getElementById('typing-value').addEventListener('keypress', home);
@@ -48,9 +52,13 @@ document.getElementById('typing-value').addEventListener('keypress', home);
 // Starts the timer for the Typing Game
 document.getElementById('start-timer').addEventListener('click', start);
 
+// Disabled the text box
+document.getElementById('typing-value').disabled  = true;
+
 //Coutns the spaces in the User text. Prints green text if user is right. Prints red text
 // if user is wrong.
 function home() {
+
     // Splits the string into words when spaces are added
     wpm = document.getElementById('typing-value').value.split(" ").length-1;
 
@@ -63,11 +71,11 @@ function home() {
 
     //Increases Charaters per minute and places into text
     cpm++;
-    document.getElementById('typing-count').innerText = cpm;
+    document.getElementById('typing-count').innerText = "Characters Entered: " + cpm;
 
     // Counts the words per minute
     if (document.getElementById('typing-value').value.charAt(wpm)) {
-        document.getElementById('typing-space').innerText = wpm;
+        document.getElementById('typing-space').innerText = "Word Count: " + wpm;
     }
     // Checks the current character in the text
         var txtcheck = typingMsg[typechoice].charAt(gen - 1);
@@ -76,19 +84,27 @@ function home() {
 
     // Checks if text and input value are the same
     if (txtcheck === typeval) {
-        document.getElementById('typing-bnon').innerHTML = txtcheck.fontcolor("green");
+        document.getElementById('typing-bnon').innerHTML += txtcheck.fontcolor("green");
+        document.getElementById('typing-bnon').style.opacity = "1.0";
     } else {
-        document.getElementById('typing-bnon').innerHTML = txtcheck.fontcolor("red");
+        document.getElementById('typing-bnon').innerHTML += typeval.fontcolor("red");
+        document.getElementById('typing-bnon').style.opacity = "0.2";
         error++;
     }
-    console.log(txtcheck + " " + typeval);
-    console.log(error);
-}
+    var numcorr = cpm - error;
+    var remain = (wpm / (60 - second) * 100);
+    if (cpm ===  typingMsg[typechoice].length) {
+        stop();
+        document.getElementById('typing-anon').innerHTML = Math.round(remain);
+    }
+    console.log(cpm + " " + typingMsg[typechoice].length);
 
+}
 var gen = 0;
 
 // Counts down the timer from 60 seconds
 function startTime() {
+    document.getElementById('typing-value').disabled  = false;
 
     // Prints time
     time.innerHTML = minute + ':' + second;
@@ -110,7 +126,12 @@ function startTime() {
 
 // Starts the timer
 function start() {
-    setInterval(startTime, 1000);
+    inter = setInterval(startTime, 1000);
+}
+function stop() {
+    clearInterval(inter);
+    document.getElementById('typing-value').disabled  = true;
+    time.innerHTML += "\t" +"Error(s): " + error;
 }
 
 // The Counter
