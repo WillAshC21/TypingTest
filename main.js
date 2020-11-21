@@ -67,7 +67,7 @@ function home() {
 
     // Prints the typed value
     var typeval = document.getElementById('typing-value').value.charAt(counter - 1);
-    wordtype.innerHTML = typeval;
+    // wordtype.innerHTML = typeval;
 
     //Increases Charaters per minute and places into text
     cpm++;
@@ -95,7 +95,7 @@ function home() {
     var remain = (wpm / (60 - second) * 100);
     if (cpm ===  typingMsg[typechoice].length) {
         stop();
-        document.getElementById('typing-anon').innerHTML = Math.round(remain);
+        document.getElementById('typing-anon').innerHTML = "WPM: " +  Math.round(remain);
     }
     console.log(cpm + " " + typingMsg[typechoice].length);
 
