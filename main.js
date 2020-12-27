@@ -1,19 +1,24 @@
 // Typing text generated
 var typingMsg = [
-    // "Nobody spoke for a minute; then Meg said in an altered tone, You know the reason Mother proposed not having any presents this Christmas was because it is going to be a hard winter for everyone ;",
-    // "Mr. Bennet was so odd a mixture of quick parts, sarcastic humour, reserve, and caprice .",
-    // "William Shakespeare was the son of John Shakespeare, an alderman and a successful glover (glove-maker) originally from Snitterfield, and Mary Arden .",
-    // "PHP is a general-purpose scripting language especially suited to web development .",
-    // "HTML can embed programs written in a scripting language such as JavaScript, which affects the behavior and content of web pages .",
-    // "Lorem Ipsum is simply dummy text of the printing and typesetting industry .",
-    // "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua .",
-    // "Facilisi morbi tempus iaculis urna id volutpat lacus laoreet .",
+    "Nobody spoke for a minute; then Meg said in an altered tone, You know the reason Mother proposed not having any presents this Christmas was because it is going to be a hard winter for everyone ;",
+    "Mr. Bennet was so odd a mixture of quick parts, sarcastic humour, reserve, and caprice .",
+    "William Shakespeare was the son of John Shakespeare, an alderman and a successful glover (glove-maker) originally from Snitterfield, and Mary Arden .",
+    "PHP is a general-purpose scripting language especially suited to web development .",
+    "HTML can embed programs written in a scripting language such as JavaScript, which affects the behavior and content of web pages .",
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry .",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua .",
+    "Facilisi morbi tempus iaculis urna id volutpat lacus laoreet .",
     "She did not hear the story as many women have heard the same, with a paralyzed inability to accept its significance .",
     "Suddenly she came upon a little three-legged table, all made of solid glass ;",
     "This is a test screen ."
 ];
+// Disables the Typing test background
 document.getElementsByClassName('typing-body')[0].style.display = "none";
+
+// Displays text in modal
 document.getElementById("welcome").innerHTML = "Welcome";
+
+// Changes screens on button click and changes background
 document.getElementById("select-screen").addEventListener("click", function(){
     document.getElementsByClassName("typing-body")[0].style.display = "block";
     document.getElementById("title-screen").style.display = "none";
@@ -101,8 +106,13 @@ function home() {
         document.getElementById('typing-bnon').style.opacity = "0.2";
         error++;
     }
+    // Subtracts the errors from the characters enterd
     var numcorr = cpm - error;
+
+    // Counts the WPM
     var remain = (wpm / (60 - second) * 100);
+
+    // Checks if current character is equal to last character in string. Dislays WPM and Score
     if (cpm ===  typingMsg[typechoice].length) {
         stop();
         document.getElementById('typing-wpmover').innerHTML = "WPM: " +  Math.round(remain);
@@ -140,6 +150,8 @@ function startTime() {
 function start() {
     inter = setInterval(startTime, 1000);
 }
+
+// Stops timer and displays score
 function stop() {
     clearInterval(inter);
     document.getElementById('typing-value').disabled  = true;
@@ -151,14 +163,18 @@ function stop() {
 // The Counter
 var counter = 0;
 
+// Modal Display
 var modal = document.getElementById('score-modal');
 
+// Modal Button
 var span = document.getElementsByClassName('close')[0];
 
+// Closes modal
 span.onclick = function() {
     modal.style.display = "none";
 }
 
+// Exits modal
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";

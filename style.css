@@ -1,12 +1,17 @@
+/*Displays background in text */
 #body-box {
     background-image: url('typing.jpg');
     background-size: 100%;
 }
+
+/*Displays web title*/
 #screen-title {
     text-align: center;
     font-size: 84px;
     color: #ffffff;
 }
+
+/* Intro Button Design */
 #select-screen {
     position: fixed;
     top: 50%;
@@ -18,9 +23,13 @@
     color: #ffffff;
     font-size: 32px;
 }
+
+/* Site Body */
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Body for the typing game */
 .typing-body {
     background-color: orange;
     position: absolute;
@@ -36,11 +45,15 @@ body {
     width: 65%;
     box-shadow: 10px 10px 10px 10px;
 }
+
+/* Input Value */
 #typing-value {
     width: 95%;
     height: 200px;
     resize: none;
 }
+
+/* Button Start Timer */
 #start-timer {
     width: 30%;
     height: 50px;
@@ -48,14 +61,20 @@ body {
     background-color: #00aaff;
     color: #ffffff;
 }
+
+/* Modal Header */
 .header {
     padding: 2px 16px;
     background-color: rgb(73, 200, 243);
     color: white;
 }
+
+/* Modal Body */
 .modal-body {
     padding: 2px 16px;
 }
+
+/* Modal Body and content */
 .modal {
     position: absolute;
     top: 50%;
@@ -67,6 +86,8 @@ body {
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
 }
+
+/* Modal Content */
 .content {
     position: relative;
     background-color: #ffffff;
@@ -77,10 +98,14 @@ body {
     animation-name: animatetop;
     animation-duration: 0.4s;
 }
+
+/* Animation for the modal content */
 @keyframes animatetop {
     from {top: -300px; opacity: 0}
   to {top: 0; opacity: 1}
 }
+
+/* Close Button */
 .close {
     color: #aaa;
     float: right;
@@ -88,11 +113,18 @@ body {
     font-weight: bold;
 }
 
+/* Close Hover */
 .close:hover, .close:focus {
     color: #000000;
     text-decoration: none;
     cursor: pointer;
 }
+/* Modal Scores Display */
 #score-modal {
     text-align: center;
+}
+
+/* Modal Title Display */
+#welcome {
+    font-size: 48px;
 }
